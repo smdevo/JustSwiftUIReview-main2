@@ -11,6 +11,7 @@ struct IntroViewG: View {
     
     @AppStorage("signed") var isSigned: Bool = false
     
+    @StateObject var vm: ViewModelG = ViewModelG()
     
     var body: some View {
         
@@ -26,6 +27,7 @@ struct IntroViewG: View {
             }
             
         }
+        .environmentObject(vm)
     }
 }
 

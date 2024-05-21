@@ -9,11 +9,23 @@ import SwiftUI
 
 struct SignInViewG: View {
     
-    @AppStorage("signed") var isSigned: Bool?
+    @EnvironmentObject var vm: ViewModelG
+    
+    
+    @AppStorage("signed") var isSigned: Bool = false
+    @AppStorage("username") var usernameOfM: String?
+    @AppStorage("password") var passwordOfM: String?
+    
+    
     
     @State var username: String = ""
     
     @State var password: String = ""
+    
+    @State var signUptoggle: Bool = false
+    
+    @State var alerttitle: String = ""
+    @State var alerttoggle: Bool = false
     
     var body: some View {
         
@@ -56,6 +68,9 @@ struct SignInViewG: View {
             
         }
         .padding()
+        .alert(isPresented: $alerttoggle) {
+            Alert(title: Text(alerttitle))
+        }
     }
     
     
@@ -72,13 +87,14 @@ struct SignInViewG_Previews: PreviewProvider {
 
 
 
-//MARK: View Components
+//MARK: View extention
 
 extension SignInViewG {
     
    private var logoImage: some View {
         
-        Image(systemName: "globe.central.south.asia.fill")
+       //Image(systemName: "globe.central.south.asia.fill")
+       Image("icUzb1")
            .resizable()
            .scaledToFit()
            .font(.largeTitle)
@@ -119,7 +135,7 @@ extension SignInViewG {
         
         Button {
             
-            isSigned = true
+            pressSignIn()
             
         } label: {
             Text("Sign In")
@@ -137,13 +153,59 @@ extension SignInViewG {
     private var signUpButton: some View {
         
         Button {
-            
+            signUptoggle.toggle()
         } label: {
             Text("Sign Up")
                 .fontWeight(.bold)
                 .foregroundColor(.white)
         }
+        .sheet(isPresented: $signUptoggle, onDismiss: {
+            username = usernameOfM ?? ""
+            password = passwordOfM ?? ""
+            print("Ondismiss")
+            print(username,password,usernameOfM,passwordOfM)
+            
+        }, content: {
+            
+              OnBoardingViewG()
+            
+        })
         
     }
+    
+}
+
+
+//MARK: Function extention
+
+extension SignInViewG {
+    
+    func pressSignIn() {
+        
+        guard checkingFull() else {
+            alerttitle = "Username and password should contain more than two character"
+            alerttoggle.toggle()
+            return
+        }
+        
+        guard vm.findingUser(username: username, password: password) else {
+            alerttitle = "There is no user that have like username or password or You are writing username or password wrong. Please check and try again"
+            alerttoggle.toggle()
+            return
+        }
+        usernameOfM = username
+        passwordOfM = password
+        
+        isSigned = true
+    }
+    
+    func checkingFull() -> Bool {
+        
+        return username.count > 2 && password.count > 2 ? true : false
+        
+    }
+    
+    
+    
     
 }

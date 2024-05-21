@@ -45,6 +45,7 @@
 		7C8D933A2BE51522006AA71E /* AnimationB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D93392BE51522006AA71E /* AnimationB.swift */; };
 		7C8D933C2BE528E6006AA71E /* AnimationCurvesB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D933B2BE528E6006AA71E /* AnimationCurvesB.swift */; };
 		7C8D933E2BE5319C006AA71E /* TransitionB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D933D2BE5319C006AA71E /* TransitionB.swift */; };
+		7C9A90F42BFCE8C500CCFE0C /* ViewModelG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9A90F32BFCE8C500CCFE0C /* ViewModelG.swift */; };
 		7CB5A95A2BE369760066DF0C /* SpacerB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5A9592BE369760066DF0C /* SpacerB.swift */; };
 		7CB5A95C2BE38FC00066DF0C /* InitsAndEnumsB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5A95B2BE38FC00066DF0C /* InitsAndEnumsB.swift */; };
 		7CB5A95E2BE394DF0066DF0C /* ForEachB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5A95D2BE394DF0066DF0C /* ForEachB.swift */; };
@@ -109,6 +110,7 @@
 		7C8D93392BE51522006AA71E /* AnimationB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationB.swift; sourceTree = "<group>"; };
 		7C8D933B2BE528E6006AA71E /* AnimationCurvesB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCurvesB.swift; sourceTree = "<group>"; };
 		7C8D933D2BE5319C006AA71E /* TransitionB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionB.swift; sourceTree = "<group>"; };
+		7C9A90F32BFCE8C500CCFE0C /* ViewModelG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelG.swift; sourceTree = "<group>"; };
 		7CB5A9592BE369760066DF0C /* SpacerB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerB.swift; sourceTree = "<group>"; };
 		7CB5A95B2BE38FC00066DF0C /* InitsAndEnumsB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitsAndEnumsB.swift; sourceTree = "<group>"; };
 		7CB5A95D2BE394DF0066DF0C /* ForEachB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachB.swift; sourceTree = "<group>"; };
@@ -258,6 +260,14 @@
 			path = Basics;
 			sourceTree = "<group>";
 		};
+		7C9A90F52BFCE8DE00CCFE0C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7C9A90F32BFCE8C500CCFE0C /* ViewModelG.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		7CB5A95F2BE39F900066DF0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +279,7 @@
 		7CC51BF22BF630BA00C8D7DC /* UnboardingViews */ = {
 			isa = PBXGroup;
 			children = (
+				7C9A90F52BFCE8DE00CCFE0C /* ViewModels */,
 				7C237BD32BFB6D1B00AC56FD /* Models */,
 				7C237BD22BFB6D0E00AC56FD /* Views */,
 			);
@@ -372,6 +383,7 @@
 				7C8D933A2BE51522006AA71E /* AnimationB.swift in Sources */,
 				7CB5A9672BE3C6A40066DF0C /* IgnoringSafeAreaB.swift in Sources */,
 				7C018E082BEB946B0070F5BC /* ContextMenuB.swift in Sources */,
+				7C9A90F42BFCE8C500CCFE0C /* ViewModelG.swift in Sources */,
 				7CB5A9692BE3DEDC0066DF0C /* ButtonB.swift in Sources */,
 				7C018E0A2BEB9DDD0070F5BC /* TextFieldB.swift in Sources */,
 				7CD0110E2BF2226600C02391 /* StepperB.swift in Sources */,

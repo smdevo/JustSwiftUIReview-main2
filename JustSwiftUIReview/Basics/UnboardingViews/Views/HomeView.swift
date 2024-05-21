@@ -10,11 +10,14 @@ import SwiftUI
 struct HomeViewG: View {
  
     @AppStorage("signed") var isSigned: Bool?
-    
+    @AppStorage("username") var usernameOfM: String?
+    @AppStorage("password") var passwordOfM: String?
     
     var body: some View {
         Text("HomeView")
             .onTapGesture {
+                usernameOfM = nil
+                passwordOfM = nil
                 isSigned = false
             }
     }

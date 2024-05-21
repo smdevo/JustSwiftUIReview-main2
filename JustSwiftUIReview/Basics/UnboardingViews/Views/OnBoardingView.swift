@@ -9,21 +9,25 @@ import SwiftUI
 
 struct OnBoardingViewG: View {
     
-    //Welcomne page
-    //Create name
-    //create username
-    //create password
-    //choose age
-    //Choose gender
+    
+    @EnvironmentObject var vm: ViewModelG
+    
+    @Environment(\.presentationMode) var pm
+    
+    @AppStorage("username") var usernameOfM: String?
+    @AppStorage("password") var passwordOfM: String?
     
     @State var nameofUser: String = ""
     @State var ageOfUser: Double = 20
-    @State var genderOfUser: String = Gender.male.rawValue
+    @State var genderOfUser: Gender = Gender.male
     @State var userNameOfUser: String = ""
     @State var passwordOfUser: String = ""
     
     
     @State var currentState: Int = 0
+    
+    @State var alerttitle: String = ""
+    @State var alerttoggle: Bool = false
     
     
     
@@ -32,6 +36,8 @@ struct OnBoardingViewG: View {
         
         
         ZStack {
+            
+            RadialGradient(colors: [Color("CustomColor"), Color("CustomColor").opacity(0.7)], center: .topLeading, startRadius: 60, endRadius: 500).ignoresSafeArea()
             
             
             VStack(spacing:20) {
@@ -64,7 +70,7 @@ struct OnBoardingViewG: View {
                 
                 
                 
-                Spacer()
+                
                 
                 Spacer()
                 nextbuttonView
@@ -88,6 +94,9 @@ struct OnBoardingViewG: View {
             .padding()
             
         }//zStack
+        .alert(isPresented: $alerttoggle) {
+            Alert(title: Text(alerttitle))
+        }
     }//body
 }
 
@@ -105,7 +114,7 @@ struct OnBoardingView_Previews: PreviewProvider {
     }
 }
 
-
+//MARK: View extension
 extension OnBoardingViewG {
     
     
@@ -129,7 +138,7 @@ extension OnBoardingViewG {
     private var nextbuttonView: some View {
         
         Button {
-            
+            handlingIncrement()
         } label: {
             Text("Next")
                 .fontWeight(.bold)
@@ -149,7 +158,7 @@ extension OnBoardingViewG {
     private var signInButton: some View {
         
         Button {
-            
+            pm.wrappedValue.dismiss()
         } label: {
             Text("Sign In")
                 .fontWeight(.bold)
@@ -276,7 +285,7 @@ extension OnBoardingViewG {
     private var genderChooselabel: some View {
        
           
-            Text("Your Gender: \(genderOfUser.capitalized)")
+        Text("Your Gender: \(genderOfUser.rawValue.capitalized)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
@@ -362,4 +371,70 @@ extension OnBoardingViewG {
     
 }
 
+
+//MARK: Function extension
+extension OnBoardingViewG {
+    
+    
+    
+    func handlingIncrement() {
+        
+        guard checkingFull() else {
+            alerttitle = "You have not complete the txt"
+            alerttoggle.toggle()
+            return
+        }
+        
+        
+        guard currentState < 5 else {
+    
+           let isExist =  vm.checkkingexistUser(username: userNameOfUser)
+            
+            guard !isExist else {
+                
+                alerttitle = "\(userNameOfUser) named User already exist Please create new one"
+                alerttoggle.toggle()
+                currentState = 4
+                return
+            }
+            
+            vm.addUser(name: nameofUser, age: Int(ageOfUser), gender: genderOfUser, password: passwordOfUser, userName: userNameOfUser)
+            
+            
+            
+            usernameOfM = userNameOfUser
+            passwordOfM = passwordOfUser
+            
+            print(vm.users)
+            print(usernameOfM,passwordOfM,userNameOfUser,passwordOfUser)
+            
+            
+            nameofUser = ""
+            userNameOfUser = ""
+            passwordOfUser = ""
+            
+            pm.wrappedValue.dismiss()
+            return
+        }
+        
+        
+        
+        currentState += 1
+    }
+    
+    func checkingFull() -> Bool {
+        
+        switch currentState {
+        case 1: return nameofUser.count < 3 ? false : true
+        case 4: return userNameOfUser.count < 3 ? false : true
+        case 5: return passwordOfUser.count < 3 ? false : true
+            
+            
+        default: return true
+            
+        }
+        
+    }
+    
+}
 
