@@ -1,0 +1,6 @@
+framework module Pods_JustSwiftUIReview {
+  umbrella header "Pods-JustSwiftUIReview-umbrella.h"
+
+  export *
+  module * { export * }
+}

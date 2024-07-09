@@ -15,6 +15,8 @@ private let realServer: String = "https://jsonplaceholder.typicode.com/"
 
 let headers: HTTPHeaders = [
    // "Accept": "a p lication/json" //I write only 1 p instead of 2
+    
+    
     "accept": "application/json"
 ]
 
