@@ -163,7 +163,6 @@ extension SignInViewG {
             username = usernameOfM ?? ""
             password = passwordOfM ?? ""
             print("Ondismiss")
-            print(username,password,usernameOfM,passwordOfM)
             
         }, content: {
             

@@ -405,9 +405,7 @@ extension OnBoardingViewG {
             usernameOfM = userNameOfUser
             passwordOfM = passwordOfUser
             
-            print(vm.users)
-            print(usernameOfM,passwordOfM,userNameOfUser,passwordOfUser)
-            
+           
             
             nameofUser = ""
             userNameOfUser = ""
